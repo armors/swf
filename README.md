@@ -3,23 +3,21 @@
 ## Build Setup
 
 ```bash
-# install dependencies
+# install dependencies (如果提示权限不足则 使用sudo npm install 以下同理)
 $ npm install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ npm run dev (本地运行)
 
 # build for production and launch server
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
+打包：
+npm run build:dev(取得是文件目录下边的env.dev)
+npm run build:prod(取得是文件目录下边的env.prod)
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-### 服务器打包之后的配置 （参考）
 
 #### nuxt.js 服务端部署
 >1，我会上传 .nuxt static .env.dev .env.prod nuxt.config.js package.json 这些文件
