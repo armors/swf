@@ -26,8 +26,26 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 >3，进入根目录 ，执行 cnpm/npm install
 
->4,部署nginx 反向代理
+>4,部署nginx 反向代理(需要告诉前端端口号和文件目录)
+#####我们的Nginx配置
 
+```
+location /dapp/yswap {
+        proxy_pass http://dev.bingoo.dapp.yswap;
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'OPTIONS, POST, GET';
+        add_header Access-Control-Allow-Credentials true;
+        add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        proxy_redirect  off;
+        client_max_body_size 1024M;
+        proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Connection "";
+        proxy_http_version 1.1;
+    }
+```
 ```
 upstream nodenuxt {
     server 127.0.0.1:3000; #nuxt项目 监听端口
@@ -62,7 +80,6 @@ server {
 >3.这样部署的服务只能通过根域名来访问，既类似于127.0.0.1 类似于这样的访问路径，如果服务器根路径被占用的话就需要部署在二级路径，类似于 127.0.0.1/web/ 这样的访问方式，如果需要这样访问的话就需要在项目中配置baseurl
 
 >[www.gxshuke.com](https://www.gxshuke.com) 这个是通过nuxt 方式部署的官网，点击可以查看详情
-
 
 
 
