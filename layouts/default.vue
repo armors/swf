@@ -29,12 +29,12 @@
                 <div class="box-flex1 line2"></div>
               </div>
               <div class="text1">DOCUMENTS</div>
-              <div class="text2">Hegic Protocol</div>
+              <div class="text2">Seaweed Protocol</div>
               <div class="text3">Learn Options Basics</div>
             </div>
             <div class="box-flex1 con-box display-flex box-center-Y document-list">
               <div class="box-flex1 document-item">
-                <div class="document-title">Hegic protocol Whitpaper</div>
+                <div class="document-title">Seaweed protocol Whitpaper</div>
                 <div>My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young I liked it very muchLost and Found My name is Jack.I picked up a couple of yellow keys in the library.If you are the owner,please call me at i have a friend who is falling in love. she honestly claims the sky is blue My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young ...
                 </div>
               </div>
@@ -249,7 +249,7 @@ export { default } from './js/default'
           height: 44px;
           text-align: center;
           background-color: $block;
-          font-size: 24px;
+          font-size: 20px;
           line-height: 44px;
           color: $colorFFF;
         }

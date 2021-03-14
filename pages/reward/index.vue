@@ -11,11 +11,11 @@
 <!--          <div class="amount">3345</div>-->
 <!--        </div>-->
 <!--        <div class="balance-item">-->
-<!--          <div class="title">Your Staked Hegic</div>-->
+<!--          <div class="title">Your Staked Seaweed</div>-->
 <!--          <div class="amount">345</div>-->
 <!--        </div>-->
 <!--        <div class="balance-item">-->
-<!--          <div class="title">Current HEGIC Price</div>-->
+<!--          <div class="title">Current SEAWEED Price</div>-->
 <!--          <div class="amount">$3345</div>-->
 <!--        </div>-->
 <!--        <div class="balance-item">-->
@@ -42,11 +42,11 @@
                :key="`interface-list-${i}`" v-html="v.name"></div>
         </div>
         <div v-show="interfaceTab.list[interfaceTab.index].type === 'ending'">
-          <div class="item-title">LOCK WRITE (LP) TOKENS AND EARN HEGIC REWARDS</div>
-          <div class="item-desc">Liquidity providers can claim rewards in HEGIC After providing WBTC or ETH to one of
-                                 the pools you will receive writeWBTC or writeETH tokens. You will need to lock these
-                                 write tokens to start receiving rewards in HEGIC tokens After locking them your share
-                                 in rewards will be increasing each block. You will need to manually claim HEIC.
+          <div class="item-title">LOCK WRITE (LP) TOKENS AND EARN SEAWEED REWARDS</div>
+          <div class="item-desc">Liquidity providers can claim rewards in SEAWEED After providing WBTC or HETH or HTto one of
+                                 the pools you will receive writeWBTC or writeETH or writeHT tokens. You will need to lock these
+                                 write tokens to start receiving rewards in SEAWEED tokens After locking them your share
+                                 in rewards will be increasing each block. You will need to manually claim SWF.
           </div>
           <div class="end-tab display-flex box-center-Y">
             <div class="end-item no-select" @click="changeEndTab(i)" :class="{active: endTab.index === i}"
@@ -74,11 +74,11 @@
           </div>
         </div>
         <div v-show="interfaceTab.list[interfaceTab.index].type === 'utilization'">
-          <div class="item-title">TRADE WBTC ETH OPTIONS AND EARN HEGIC REWARDS</div>
-          <div class="item-desc">Options buyers can claim rewitrdls ir HEGIC After buying ETH or WBTCoptions an Hegie
-                                 you will be able to clalm your rewards Rewards can be claimed for each option. Rewards
-                                 size in HEdIC tokens depends on the size-and period of an option.You will need to
-                                 imiumiaMly elaine HEnIC.
+          <div class="item-title">TRADE WBTC HETH HT OPTIONS AND EARN SEAWEED REWARDS</div>
+          <div class="item-desc">Options buyers can claim rewitrdls ir SEAWEED After buying HETH or WBTC or HT options an SWF
+                                 you will be able to clalm your rewards. Rewards can be claimed for each option. Rewards
+                                 size in SWF tokens depends on the size-and period of an option.You will need to
+                                 imiumiaMly elaine Seaweed.
           </div>
           <div class="end-tab display-flex box-center-Y">
             <div class="end-item no-select" @click="changeUtilizationTab(i)"
@@ -107,10 +107,10 @@
         </div>
         <div v-show="interfaceTab.list[interfaceTab.index].type === 'stakeEarn'">
           <div class="item-title">HOLD STAKING POTS AND EARN WBTC OR ETH</div>
-          <div class="item-desc">You need 888,000 HEGIC for a staking pot. ou can buy a staking pot by converting
-                                 888,000 HEGIC into a staking pot that you will be able to stake for receiving a share
+          <div class="item-desc">You need 200,000 SWF for a staking pot. ou can buy a staking pot by converting
+                                 200,000 SWF into a staking pot that you will be able to stake for receiving a share
                                  of staking rewards distributed among pots holder.One pot can be used to receive rewards
-                                 in WBTC or ETH Current rewards size: 1% of each options size.
+                                 in WBTC or HETH or HT Current rewards size: 2% of each options size.
           </div>
           <div class="end-tab display-flex box-center-Y">
             <div class="end-item no-select" @click="changeStakeTab(i)" :class="{active: stakeTab.index === i}"
@@ -139,7 +139,7 @@
           </div>
         </div>
         <div v-show="interfaceTab.list[interfaceTab.index].type === 'bonding'">
-          <div class="item-title">BONDING CURVE CONTRACT:BUY OR SELL HEGIC TOKENS</div>
+          <div class="item-title">BONDING CURVE CONTRACT:BUY OR SELL SWF TOKENS</div>
           <div class="end-tab display-flex box-center-Y">
             <div class="end-item no-select" @click="changeBoundTab(i)" :class="{active: boundTab.index === i}"
                  v-for="(v, i) in boundTab.list" :key="`endTab-list-${i}`" v-html="v"></div>
@@ -149,25 +149,25 @@
               <div class="title">Your Buy Price</div>
               <div class="number-box display-flex box-center-end">
                 <div>35465</div>
-                <div class="currency-b">ETH</div>
+                <div class="currency-b">HT</div>
               </div>
             </div>
             <div class="box-flex1">
               <div class="title">Acquired on the Bonding Curve</div>
               <div class="number-box display-flex box-center-end">
                 <div>122131</div>
-                <div class="currency-b">HEGIC</div>
+                <div class="currency-b">SWF</div>
               </div>
             </div>
             <div class="box-flex1">
-              <div class="title">Your Buy Price</div>
+              <div class="title">Available on the Bonding Curve</div>
               <div class="number-box display-flex box-center-end">
                 <div>122131</div>
-                <div class="currency-b">HEGIC</div>
+                <div class="currency-b">SWF</div>
               </div>
             </div>
           </div>
-<!--          <div class="title-curw">HEGIC Bonding Curw</div>-->
+<!--          <div class="title-curw">SEAWEED Bonding Curw</div>-->
           <div class="liquidity-main display-flex box-center-start">
             <div class="liquidity-text-box">
               <div class="liquidity-text-item">
@@ -189,11 +189,11 @@
               <div class="input-item">
                 <div class="display-flex box-center-Y input-item-title">
                   <div class="input-item-title-icon"><img src="../../assets/image/icon_trade_1@2x.png" alt=""></div>
-                  <div class="box-flex1">You are buying this amount of HEGIC</div>
+                  <div class="box-flex1">You are buying this amount of SEAWEED</div>
                 </div>
                 <div class="display-flex box-center-Y currency-input">
                   <y-number-input :point="6" v-model="putAmount" @input="changePutAmount"></y-number-input>
-                  <div class="currency">HEIGC</div>
+                  <div class="currency">SWF</div>
                 </div>
               </div>
               <div class="input-item">
@@ -217,42 +217,43 @@
               <div class="token-title">Total Staked</div>
               <div class="number-box display-flex box-center-end">
                 <div>122131</div>
-                <div class="currency-b">HEGIC</div>
+                <div class="currency-b">SWF</div>
               </div>
             </div>
             <div class="box-flex1">
               <div class="token-title">Active Pots</div>
               <div class="number-box display-flex box-center-end">
-                <div>122131</div>
+                <div>10/1500</div>
               </div>
             </div>
             <div class="box-flex1">
               <div class="token-title">Settlements Fee Rate</div>
               <div class="number-box display-flex box-center-end">
-                <div>122131</div>
+                <div>2</div>
                 <div class="currency-b">%</div>
               </div>
             </div>
           </div>
           <div class="display-flex box-center-Y token-2">
             <div class="box-flex1">
-              <div class="token-title">Total Settements Fees</div>
+              <div class="token-title">Settlements Fees in HT</div>
               <div class="number-box display-flex box-center-end">
-                <div>$122131</div>
+                <div>131</div>
+                <div class="currency-b">HT</div>
               </div>
             </div>
             <div class="box-flex1">
-              <div class="token-title">Settements Fees in WBTC</div>
+              <div class="token-title">Settlements Fees in HBTC</div>
               <div class="number-box display-flex box-center-end">
                 <div>122</div>
                 <div class="currency-b">WBTC</div>
               </div>
             </div>
             <div class="box-flex1">
-              <div class="token-title">Settements Fees in ETH</div>
+              <div class="token-title">Settlements Fees in HETH</div>
               <div class="number-box display-flex box-center-end">
                 <div>12</div>
-                <div class="currency-b">ETH</div>
+                <div class="currency-b">WETH</div>
               </div>
             </div>
           </div>

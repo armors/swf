@@ -17,13 +17,13 @@ export default {
           name: 'LIQUIDITY<br>UTILIZATION REWARDS',
           type: 'utilization'
         }, {
-          name: 'STAKING EARN<br>WBTC OR ETH',
+          name: 'STAKING EARN<br>WBTC OR HETH OR HT',
           type: 'stakeEarn'
         }, {
-          name: 'BONDING CURVE<br>BUY OR SELL HEGIC',
+          name: 'BONDING CURVE<br>BUY OR SELL SEAWEED',
           type: 'bonding'
         }, {
-          name: 'HEGIC TOKEN<br>ANALYTICS',
+          name: 'SEAWEED TOKEN<br>ANALYTICS',
           type: 'token'
         }],
         index: 0
@@ -60,7 +60,7 @@ export default {
           icon_url: require('../../../assets/image/icon_reward_end_1@2x.png'),
           balance: 0,
           type: 'claim',
-          currency: 'RHEGIC2',
+          currency: 'rSEAWEED',
           btn_text: 'CLAIM REWARDS',
           title: 'ETH POOL LIQUIDITY MINING REWARDS',
           sub_title: 'Click the Claim Rewards button and confirm the transaction forreceiving ta be able to withdraw'
@@ -72,7 +72,7 @@ export default {
           currency: 'ETH',
           btn_text: 'LOCK TOKENS',
           title: 'Your Address Balance',
-          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim HEGIC'
+          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim SEAWEED'
         },
         {
           icon_url: require('../../../assets/image/icon_reward_end_3@2x.png'),
@@ -81,7 +81,7 @@ export default {
           currency: 'ETH',
           btn_text: 'UNLOCK TOKENS',
           title: 'Locked',
-          sub_title: 'Unlock writrETH ta be able to withdraw awards in rHEGIC tokens your ETH from the liquidity pool'
+          sub_title: 'Unlock writrETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
         }
       ],
       stakeTab: {
@@ -126,9 +126,9 @@ export default {
           balance: 0,
           type: 'stake',
           currency: 'ETH',
-          btn_text: 'STAKE HEGIC',
+          btn_text: 'STAKE SEAWEED',
           title: 'Your Pots',
-          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim HEGIC'
+          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim SEAWEED'
         },
         {
           icon_url: require('../../../assets/image/icon_reward_stake_3@2x.png'),
@@ -137,7 +137,7 @@ export default {
           currency: 'ETH',
           btn_text: 'CLALM REWARDA',
           title: 'Rewards',
-          sub_title: 'Unlock writrETH ta be able to withdraw awards in rHEGIC tokens your ETH from the liquidity pool'
+          sub_title: 'Unlock writrETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
         }
       ],
       utilizationTab: {

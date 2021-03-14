@@ -187,14 +187,14 @@
                 <div class="icon-img"><img src="../../assets/image/icon_problem@2x.png" alt=""></div>
                 <div>Problem</div>
               </div>
-              <div class="text-desc">Writers(Liquidity providers)receive writeWBTC tokens(ERC20)that give them a share in the poots premiums that are distributed to them after the options contracts</div>
+              <div class="text-desc">Writers(Liquidity providers)receive writeWBTC tokens(HRC20)that give them a share in the poots premiums that are distributed to them after the options contracts</div>
             </div>
             <div class="liquidity-text-item">
               <div class="display-flex box-center-Y">
                 <div class="icon-img"><img src="../../assets/image/icon_remind@2x.png" alt=""></div>
                 <div>Remind</div>
               </div>
-              <div class="text-desc">Click the"Deposit button and 1 WBTC will be sent from your Ethereum address to the liquidity pool contract After the transaction is confirmed by miners, you will</div>
+              <div class="text-desc">Click the"Deposit button and 1 WBTC will be sent from your Heco address to the liquidity pool contract After the transaction is confirmed by miners, you will</div>
             </div>
           </div>
           <div class="box-flex1">
