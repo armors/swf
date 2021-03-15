@@ -235,29 +235,29 @@
               </div>
             </div>
           </div>
-          <div class="display-flex box-center-Y token-2">
-            <div class="box-flex1">
-              <div class="token-title">Settlements Fees in HT</div>
-              <div class="number-box display-flex box-center-end">
-                <div>131</div>
-                <div class="currency-b">HT</div>
-              </div>
-            </div>
-            <div class="box-flex1">
-              <div class="token-title">Settlements Fees in HBTC</div>
-              <div class="number-box display-flex box-center-end">
-                <div>122</div>
-                <div class="currency-b">WBTC</div>
-              </div>
-            </div>
-            <div class="box-flex1">
-              <div class="token-title">Settlements Fees in HETH</div>
-              <div class="number-box display-flex box-center-end">
-                <div>12</div>
-                <div class="currency-b">WETH</div>
-              </div>
-            </div>
-          </div>
+<!--          <div class="display-flex box-center-Y token-2">-->
+<!--            <div class="box-flex1">-->
+<!--              <div class="token-title">Settlements Fees in HT</div>-->
+<!--              <div class="number-box display-flex box-center-end">-->
+<!--                <div>131</div>-->
+<!--                <div class="currency-b">HT</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="box-flex1">-->
+<!--              <div class="token-title">Settlements Fees in HBTC</div>-->
+<!--              <div class="number-box display-flex box-center-end">-->
+<!--                <div>122</div>-->
+<!--                <div class="currency-b">WBTC</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="box-flex1">-->
+<!--              <div class="token-title">Settlements Fees in HETH</div>-->
+<!--              <div class="number-box display-flex box-center-end">-->
+<!--                <div>12</div>-->
+<!--                <div class="currency-b">WETH</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </div>
       <dialogConfirm :isShow="showLockToken" @saveDialog="lockToken" @closeDialog="showLockToken=false">
