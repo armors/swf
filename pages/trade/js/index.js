@@ -32,7 +32,7 @@ export default {
         '4week(28days)': 28
       },
       optionSizePlaceholder: '1',
-      strikePricePlaceholder: '14.98',
+      strikePricePlaceholder: '0',
       optionsType: '1',
       tradeForm: {
         optionSize: '',
@@ -51,7 +51,7 @@ export default {
       },
       contractHead: ['Type', 'Size', 'Strike Price', 'Price Now', 'Break-even', 'P&L', 'Placed At', 'Expires in', 'Exercise', 'Share'],
       contractDataList: [],
-      price_HT: 14,
+      price_HT: 0,
       getHTAmount: 0
     }
   },
@@ -127,12 +127,12 @@ export default {
           strikePrice: parseFloat(strikePrice),
           totalFee: parseFloat(this.$web3_http.utils.fromWei(fees.total.toString(), 'ether'))
         }
-        this.fees.totalCost = parseFloat(this.keepPoint(currentPrice * this.fees.totalFee, 2))
+        this.fees.totalCost = parseFloat(this.keepPoint(currentPrice * this.fees.totalFee, 4))
         // PUT 类型
         if (this.optionsType === '1') {
-          this.fees.breakEven = parseFloat(this.keepPoint(strikePrice + (this.fees.totalCost / optionSize), 2))
+          this.fees.breakEven = parseFloat(this.keepPoint(strikePrice + (this.fees.totalCost / optionSize), 4))
         } else {
-          this.fees.breakEven = parseFloat(this.keepPoint(strikePrice - (this.fees.totalCost / optionSize), 2))
+          this.fees.breakEven = parseFloat(this.keepPoint(strikePrice - (this.fees.totalCost / optionSize), 4))
         }
         // this.getHTAmount = parseFloat(keepPoint(numDiv(this.fees.totalCost, price[this.tradeTab.list[this.tradeTab.index].currency]), 4))
         console.log(this.fees)
@@ -206,11 +206,13 @@ export default {
     setAccount () {
       this.initPage()
     },
-    initPage () {
+    async initPage () {
       that = this
       if (that.$account) {
         that.account = that.$account
-        this.getPrice()
+        const price = await this.getPrice()
+        that.price_HT = price.price_HT
+        that.strikePricePlaceholder = that.price_HT.toString()
         this.getFees()
         that.getContractDataList()
       }
