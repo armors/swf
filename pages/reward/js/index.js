@@ -1,7 +1,8 @@
+import * as echarts from 'echarts'
 import { useTokenContract, useTokenContractWeb3 } from '../../../utils/web3/web3Utils'
 import COIN_ABI from '../../../utils/web3/coinABI'
 import { sendTransactionEvent, useContractMethods } from '../../../utils/web3/contractEvent'
-import { keepPoint } from '../../../utils/function'
+import { keepPoint, numDiv } from '../../../utils/function'
 import { approveEvent } from '../../../utils/web3/contractApprove'
 let that
 export default {
@@ -111,6 +112,8 @@ export default {
       currentStakeTab: {},
       initContractStake: null,
       potTotalSupply: 0,
+      SWFTotalSupply: 0,
+      SWFPrice: 0,
       stakeEarnList: [
         {
           icon_url: require('../../../assets/image/icon_reward_stake_1@2x.png'),
@@ -326,7 +329,75 @@ export default {
       boundTab: {
         list: ['BUY', 'SELL'],
         index: 0
-      }
+      },
+      option: {
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          xAxis: {
+            show: false,
+            axisTick: {
+              show: false
+            },
+            splitArea: {
+              show: true,
+              interval: 7,
+              areaStyle: {
+                color: ['rgba(156, 185, 24, 1)', 'rgba(235,97,95,1)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)', 'rgba(235,97,95,1)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)']
+              }
+            },
+            // 网格样式
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ['blue'],
+                width: 1,
+                type: 'solid'
+              }
+            }
+          }
+        },
+        visualMap: {
+          type: 'piecewise',
+          show: true,
+          dimension: 0,
+          pieces: [
+            {
+              gt: 0,
+              lte: 2,
+              color: 'red'
+            },
+            {
+              gt: 2,
+              lte: 7,
+              color: 'rgba(156, 185, 24, 1)'
+            }
+          ]
+        },
+        yAxis: {
+          type: 'value',
+          // 网格样式
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: ['blue'],
+              width: 1,
+              type: 'solid'
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        series: [{
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: 'line',
+          areaStyle: {},
+          smooth: true
+        }]
+      },
+      myChart: null
     }
   },
   mounted () {
@@ -338,6 +409,24 @@ export default {
       that.account = that.$account
       // 页面进来请求第一页的数据
       that.getEndInfo()
+    },
+    initChart () {
+      if (that.myChart) {
+        that.myChart.clear()
+        this.$nextTick(function () {
+          setTimeout(function () {
+            that.option && that.myChart.setOption(that.option)
+          }, 500)
+        })
+      } else {
+        this.$nextTick(function () {
+          setTimeout(function () {
+            const chartDom = document.getElementById('bondChart')
+            that.myChart = echarts.init(chartDom)
+            that.option && that.myChart.setOption(that.option)
+          }, 500)
+        })
+      }
     },
     // 钱包地址获取到之后加载页面数据
     setAccount () {
@@ -544,6 +633,9 @@ export default {
           that.getStakeInfo()
           break
         case 'bonding':
+          that.getBondInfo()
+          that.getSWFPrice()
+          that.getBondChart()
           break
         case 'token':
           break
@@ -553,16 +645,27 @@ export default {
       this.utilizationTab.index = i
     },
     // 第四个模块 bound start
+    async getBondInfo () {
+      const tokenContract = useTokenContract(process.env.buy_sell_HT, COIN_ABI.buy_sell)
+      const token = await tokenContract.token()
+      const tokenContract2 = useTokenContract(token, COIN_ABI.r_seaweed)
+      const totalSupply = await tokenContract2.totalSupply()
+      that.SWFTotalSupply = that.$web3_http.utils.fromWei(totalSupply.toString())
+    },
     changeBoundTab (i) {
       this.boundTab.index = i
       that.putAmount = ''
       that.getAmountOriginal = ''
       that.getAmount = ''
+      that.getSWFPrice()
+      that.getBondChart()
     },
     async changePutAmount (val) {
-      if (!val) {
+      if (!parseInt(val)) {
         that.getAmountOriginal = ''
         that.getAmount = ''
+        that.getSWFPrice()
+        that.getBondChart()
         return
       }
       const tokenContract = useTokenContractWeb3(COIN_ABI.buy_sell, process.env.buy_sell_HT)
@@ -574,7 +677,131 @@ export default {
       }
       that.getAmountOriginal = checkAmount
       that.getAmount = parseFloat(keepPoint(that.$web3_http.utils.fromWei(checkAmount), 6))
+      that.SWFPrice = parseFloat(keepPoint(numDiv(that.getAmount, val), 6))
+      that.getBondChart()
       console.log(that.getAmount)
+    },
+    getFromWeiData (num) {
+      return parseFloat(keepPoint(that.$web3_http.utils.fromWei(num.toString()), 6))
+    },
+    async getSWFPrice () {
+      let checkAmount
+      const tokenContract = useTokenContractWeb3(COIN_ABI.buy_sell, process.env.buy_sell_HT)
+      if (that.boundTab.index === 0) {
+        checkAmount = await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('1')).call()
+      } else {
+        checkAmount = await tokenContract.methods.checkSell(that.$web3_http.utils.toWei('1')).call()
+      }
+      that.SWFPrice = parseFloat(keepPoint(that.$web3_http.utils.fromWei(checkAmount), 6))
+    },
+    async getBondChart () {
+      const tokenContract = useTokenContractWeb3(COIN_ABI.buy_sell, process.env.buy_sell_HT)
+      const seriesData = [
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('1')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('1000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('2000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('3000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('4000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('5000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('6000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('7000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('8000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('9000000')).call(),
+        await tokenContract.methods.checkBuy(that.$web3_http.utils.toWei('10000000')).call()
+      ]
+      console.log(seriesData)
+      const seriesDataA = []
+      seriesData.map(function (v, i) {
+        console.log(i, v)
+        seriesDataA.push(that.getFromWeiData(v))
+      })
+      console.log(seriesDataA)
+      const getAmount = parseInt(that.putAmount) || 0
+      console.log(getAmount, getAmount / 1000000)
+      let pieces
+      if (this.boundTab.index === 0) {
+        pieces = [
+          {
+            gt: 0,
+            lte: getAmount / 1000000,
+            color: 'rgba(156, 185, 24, 1)'
+          },
+          {
+            gt: getAmount / 1000000,
+            lte: 11,
+            color: 'rgba(156, 185, 24, 0.3)'
+          }
+        ]
+      } else {
+        pieces = [
+          {
+            gt: 0,
+            lte: 11,
+            color: 'rgba(156, 185, 24, 0.3)'
+          }
+        ]
+      }
+      console.log(pieces)
+      that.option = {
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['0', '10M', '20M', '30M', '40M', '50M', '60M', '70M', '80M', '90M', '100M'],
+          axisLabel: {
+            show: true,
+            textStyle: {
+              fontSize: 12 // 更改坐标轴文字大小
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'rgba(156, 185, 24, 0.3)' // 更改坐标轴颜色
+            }
+          },
+          // 网格样式
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: ['rgba(156, 185, 24, 0.3)'],
+              width: 1,
+              type: 'solid'
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        visualMap: {
+          type: 'piecewise',
+          show: true,
+          dimension: 0,
+          pieces: pieces
+        },
+        yAxis: {
+          name: 'HT',
+          type: 'value',
+          // 网格样式
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: ['rgba(156, 185, 24, 0.3)'],
+              width: 1,
+              type: 'solid'
+            }
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        series: [{
+          symbol: 'none',
+          data: seriesDataA,
+          type: 'line',
+          areaStyle: {},
+          smooth: true
+        }]
+      }
+      that.initChart()
     },
     buy () {
       // 需要传Value的合约操作初始化合约

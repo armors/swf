@@ -300,13 +300,13 @@
         }
         .number-box{
           margin-top: 26px;
-          font-size: 40px;
+          font-size: 28px;
           font-weight: 600;
           color: $block;
           line-height: 48px;
           .currency-b{
             font-size: 19px;
-            margin-left: 48px;
+            margin-left: 24px;
           }
         }
       }
@@ -325,8 +325,12 @@
     .liquidity-main{
       margin-top: 30px;
       .liquidity-text-box{
-        width: 380px;
+        width: 500px;
         margin-right: 27px;
+        .bond-chart{
+          width: 500px;
+          height: 300px;
+        }
         .liquidity-text-item{
           font-size: 24px;
           font-weight: 500;
@@ -355,7 +359,7 @@
           margin-top: 0;
         }
         .input-item-title{
-          font-size: 24px;
+          font-size: 16px;
           font-weight: 400;
           line-height: 28px;
           color: $block;
