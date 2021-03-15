@@ -18,7 +18,7 @@
           <div class="text-box">
             <p>If the price of underlying will rise higher than 1,601.25 during the next 1 day your option will expire worthless.</p>
             <p>If the price of underlying will fall down lower than {{milliFormat(fees.breakEven)}} during the next 1 day you will be able to exercise your option and take profits.</p>
-            <p>Click the "Buy Option Contract" button and conﬁrm the transaction for ≈{{getHTAmount}} HT in your wallet.</p>
+            <p>Click the "Buy Option Contract" button and conﬁrm the transaction for ≈{{millHTAmount(fees.totalFee)}} HT in your wallet.</p>
             <p>The option contract will be activated immediately after the transaction is conﬁrmed by miners.
                You will be able to exercise your options contracts at any moment during the period of holding.
             </p>
@@ -72,7 +72,7 @@
                   </v-radio-group>
               </div>
               <div class="display-flex box-center-Y currency-input">
-                <y-number-input :placeholder="optionSizePlaceholder" :point="6" v-model="tradeForm.optionSize" @input="changeVal"></y-number-input>
+                <y-number-input :placeholder="optionSizePlaceholder" :point="0" v-model="tradeForm.optionSize" @input="changeVal"></y-number-input>
                 <div class="currency">{{tradeTab.list[tradeTab.index].currency}}</div>
               </div>
             </div>

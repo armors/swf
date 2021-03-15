@@ -2,7 +2,10 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import { getWeb3 } from '../utils/web3/getWeb3'
 import { TRANSACTION_ACTIONS } from '../utils/web3/constants'
-import { keepPoint, milliFormat } from '../utils/function'
+import { keepPoint, milliFormat, numDiv, numMulti } from '../utils/function'
+import { useTokenContract } from '../utils/web3/web3Utils'
+import COIN_ABI from '../utils/web3/coinABI'
+import { BigNumber } from '@ethersproject/bignumber'
 export default {
   computed: {
     'store.state.accounts': function () {
@@ -33,7 +36,29 @@ export default {
     })
   },
   methods: {
-    async getPrice () {},
+    toWei8 (num) {
+      // console.log(num.mul(100000000).toString())
+      console.log(numMulti(num, 100000000))
+      return numMulti(num, 100000000)
+    },
+    fromWei8 (num) {
+      // console.log(num.div(100000000).toString())
+      console.log(numDiv(num, 100000000))
+      return numDiv(num, 100000000)
+    },
+    async getPrice () {
+      const tokenBTC = useTokenContract(process.env.BTC_USD, COIN_ABI.oracle)
+      const tokenETH = useTokenContract(process.env.ETH_USD, COIN_ABI.oracle)
+      const tokenHT = useTokenContract(process.env.HT_USD, COIN_ABI.oracle)
+      const price_BTC = await tokenBTC.price()
+      const price_ETH = await tokenETH.price()
+      const price_HT = await tokenHT.price()
+      return {
+        price_HBTC: numDiv(price_BTC, 100000000),
+        price_HETH: numDiv(price_ETH, 100000000),
+        price_HT: numDiv(price_HT, 100000000)
+      }
+    },
     async disConnectAccount () {
       console.log(this.$web3_http.currentProvider)
       // await this.$web3_http.currentProvider.disconnect()

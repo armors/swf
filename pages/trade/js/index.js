@@ -15,7 +15,7 @@ export default {
           currency: 'HBTC',
           contract: process.env.options_HBTC
         }, {
-          currency: 'ETH',
+          currency: 'HETH',
           contract: process.env.options_HBTC
         }, {
           currency: 'HT',
@@ -51,13 +51,16 @@ export default {
       },
       contractHead: ['Type', 'Size', 'Strike Price', 'Price Now', 'Break-even', 'P&L', 'Placed At', 'Expires in', 'Exercise', 'Share'],
       contractDataList: [],
-      price_HT: 14
+      price_HT: 14,
+      getHTAmount: 0
     }
   },
   computed: {
-    getHTAmount: function () {
-      return milliFormat(parseFloat(keepPoint(numDiv(this.fees.totalCost, this.price_HT), 4)))
-    }
+    // getHTAmount: async function () {
+    //   const price = await this.getPrice()
+    //   console.log(price)
+    //   return milliFormat(parseFloat(keepPoint(numDiv(this.fees.totalCost, price[this.tradeTab.list[this.tradeTab.index].currency]), 4)))
+    // }
   },
   watch: {
     // 切换存入期限以更新fee
@@ -75,6 +78,9 @@ export default {
     this.initPage()
   },
   methods: {
+    millHTAmount (num) {
+      return parseFloat(keepPoint(num, 6))
+    },
     // 切换行权的币种
     changeTradeTab (i) {
       this.tradeTab.index = i
@@ -93,12 +99,15 @@ export default {
       console.log(!this.tradeForm.strikePrice || !this.tradeForm.optionSize)
       const strikePrice = this.tradeForm.strikePrice || this.strikePricePlaceholder
       const optionSize = this.tradeForm.optionSize || this.optionSizePlaceholder
+      const price = await this.getPrice()
+      console.log(price)
       // if (!this.tradeForm.strikePrice || !this.tradeForm.optionSize) {
       //   return
       // }
       console.log(strikePrice, optionSize)
       const current_currency = this.tradeTab.list[this.tradeTab.index]
       console.log(current_currency.contract)
+      const currentPrice = price[`price_${current_currency.currency}`]
       const contract = current_currency.contract
       const tokenContract = useTokenContract(contract, COIN_ABI[`futures_${current_currency.currency}`])
       // const tokenContract = useTokenContractWeb3(COIN_ABI[`futures_${current_currency.currency}`], contract)
@@ -106,9 +115,10 @@ export default {
         const fees = await this.getFeesResult(
           tokenContract,
           this.holdTime[this.tradeForm.hold] * 24 * 60 * 60,
-          this.$web3_http.utils.toWei(optionSize),
+          optionSize,
           strikePrice,
           this.optionsType)
+        console.log(fees)
         this.fees = {
           total: fees.total.toString(),
           settlementFee: fees.settlementFee.toString(),
@@ -117,13 +127,14 @@ export default {
           strikePrice: parseFloat(strikePrice),
           totalFee: parseFloat(this.$web3_http.utils.fromWei(fees.total.toString(), 'ether'))
         }
-        this.fees.totalCost = parseFloat(this.keepPoint(this.price_HT * this.fees.totalFee, 2))
+        this.fees.totalCost = parseFloat(this.keepPoint(currentPrice * this.fees.totalFee, 2))
         // PUT 类型
         if (this.optionsType === '1') {
           this.fees.breakEven = parseFloat(this.keepPoint(strikePrice + (this.fees.totalCost / optionSize), 2))
         } else {
           this.fees.breakEven = parseFloat(this.keepPoint(strikePrice - (this.fees.totalCost / optionSize), 2))
         }
+        // this.getHTAmount = parseFloat(keepPoint(numDiv(this.fees.totalCost, price[this.tradeTab.list[this.tradeTab.index].currency]), 4))
         console.log(this.fees)
       } catch (e) {
         console.log(e)
@@ -131,12 +142,32 @@ export default {
     },
     // 请求fee合约操作
     async getFeesResult (tokenContract, hold, optionSize, strikePrice, optionsType) {
+      strikePrice = this.toWei8(strikePrice)
+      if (this.tradeTab.list[this.tradeTab.index].currency === 'HBTC') {
+        optionSize = this.toWei8(optionSize)
+      } else {
+        optionSize = this.$web3_http.utils.toWei(optionSize)
+      }
+      console.log(hold,
+        optionSize,
+        strikePrice,
+        optionsType)
       try {
-        return await tokenContract.fees(
+        const fees = await tokenContract.fees(
           hold,
-          this.$web3_http.utils.toWei(optionSize, 'ether'),
-          this.$web3_http.utils.toWei(strikePrice, 'ether'),
+          optionSize,
+          strikePrice,
           optionsType)
+        console.log({
+          total: fees.total.toString(),
+          settlementFee: fees.settlementFee.toString(),
+          strikeFee: fees.strikeFee.toString(),
+          periodFee: fees.periodFee.toString(),
+          strikePrice: strikePrice,
+          totalFee: fees.total.toString()
+        })
+        console.log(fees)
+        return fees
       } catch (e) {
         console.log(e)
         return null
@@ -157,7 +188,7 @@ export default {
           this.optionsType)
           .send({
             from: that.account,
-            value: that.$web3_http.utils.toWei(that.tradeForm.optionSize)
+            value: that.$web3_http.utils.toWei(that.fees.totalFee.toString())
           }), {
           summary: `create ${that.amount}`
         }, function () {
@@ -179,6 +210,7 @@ export default {
       that = this
       if (that.$account) {
         that.account = that.$account
+        this.getPrice()
         this.getFees()
         that.getContractDataList()
       }
