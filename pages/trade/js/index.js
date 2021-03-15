@@ -2,7 +2,7 @@ import { useTokenContract, useTokenContractWeb3 } from '../../../utils/web3/web3
 // import { BigNumber } from '@ethersproject/bignumber'
 import COIN_ABI from '../../../utils/web3/coinABI'
 import { sendTransactionEvent, useContractMethods } from '../../../utils/web3/contractEvent'
-import { timeToDate1 } from '../../../utils/function'
+import { keepPoint, numDiv, timeToDate1, milliFormat } from '../../../utils/function'
 
 let that
 export default {
@@ -52,6 +52,11 @@ export default {
       contractHead: ['Type', 'Size', 'Strike Price', 'Price Now', 'Break-even', 'P&L', 'Placed At', 'Expires in', 'Exercise', 'Share'],
       contractDataList: [],
       price_HT: 14
+    }
+  },
+  computed: {
+    getHTAmount: function () {
+      return milliFormat(parseFloat(keepPoint(numDiv(this.fees.totalCost, this.price_HT), 4)))
     }
   },
   watch: {

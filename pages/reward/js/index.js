@@ -72,7 +72,7 @@ export default {
           currency: 'ETH',
           btn_text: 'LOCK TOKENS',
           title: 'Your Address Balance',
-          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim SEAWEED'
+          sub_title: 'Lock writeETH to start receiving. You will need to manually claim SEAWEED'
         },
         {
           icon_url: require('../../../assets/image/icon_reward_end_3@2x.png'),
@@ -81,7 +81,7 @@ export default {
           currency: 'ETH',
           btn_text: 'UNLOCK TOKENS',
           title: 'Locked',
-          sub_title: 'Unlock writrETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
+          sub_title: 'Unlock writeETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
         }
       ],
       stakeTab: {
@@ -119,7 +119,7 @@ export default {
           currency: 'SWF',
           btn_text: 'WITHDRAW',
           title: 'Total Staked',
-          sub_title: 'Click the Claim Rewards button and confirm the transaction forreceiving ta be able to withdraw'
+          sub_title: 'Click the Claim Rewards button and confirm the transaction foreceiving ta be able to withdraw'
         },
         {
           icon_url: require('../../../assets/image/icon_reward_stake_2@2x.png'),
@@ -128,16 +128,16 @@ export default {
           currency: 'ETH',
           btn_text: 'STAKE SEAWEED',
           title: 'Your Pots',
-          sub_title: 'Lock wniteETH to start receiving. You will need to manually claim SEAWEED'
+          sub_title: 'Lock writeETH to start receiving. You will need to manually claim SEAWEED'
         },
         {
           icon_url: require('../../../assets/image/icon_reward_stake_3@2x.png'),
           balance: 0,
           type: 'claim',
           currency: 'ETH',
-          btn_text: 'CLALM REWARDA',
+          btn_text: 'CLAIM REWARD',
           title: 'Rewards',
-          sub_title: 'Unlock writrETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
+          sub_title: 'Unlock writeETH ta be able to withdraw awards in rSEAWEED tokens your ETH from the liquidity pool'
         }
       ],
       utilizationTab: {
@@ -354,6 +354,8 @@ export default {
       that.currentStakeTab = that.stakeTab.list[that.stakeTab.index]
       that.stakeEarnList[1].currency = that.currentStakeTab.currency
       that.stakeEarnList[2].currency = that.currentStakeTab.currency
+      that.stakeEarnList[1].sub_title = `Lock write${that.currentStakeTab.currency} to start receiving. You will need to manually claim SEAWEED`
+      that.stakeEarnList[2].sub_title = `Unlock write${that.currentStakeTab.currency} ta be able to withdraw awards in rSEAWEED tokens your ${that.currentStakeTab.currency} from the liquidity pool`
       // 初始化合约
       that.initContractStake = useTokenContract(that.currentStakeTab.contractPool, COIN_ABI.stake)
       const seaweedAddress = await that.initContractStake.Seaweed()
@@ -446,6 +448,8 @@ export default {
       console.log(that.currentCurrencyEnd.currency)
       that.endTotalList[1].currency = that.currentCurrencyEnd.currency
       that.endTotalList[2].currency = that.currentCurrencyEnd.currency
+      that.endTotalList[1].sub_title = `Lock write${that.currentCurrencyEnd.currency} to start receiving. You will need to manually claim SEAWEED`
+      that.endTotalList[2].sub_title = `Unlock write${that.currentCurrencyEnd.currency} to be able to withdraw awards in rSEAWEED tokens your ${that.currentCurrencyEnd.currency} from the liquidity pool`
       // 初始化合约
       that.initContractEnd = useTokenContract(that.currentCurrencyEnd.contract, COIN_ABI.stake_reward_ETH)
       const contractPool = useTokenContract(that.currentCurrencyEnd.contractPool, COIN_ABI.pool_HT)

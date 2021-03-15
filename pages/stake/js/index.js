@@ -70,7 +70,7 @@ export default {
             desc: 'Provide WBTC to this pool to start selling WBTC call and put options and earning yield on WBTC'
           }, {
             currency: 'HETH',
-            contractCurrency: process.env.currency_HETH,
+            contractCurrency: process.env.options_HBTC,
             contractPool: process.env.pool_HT,
             icon_url: require('../../../assets/image/icon_pool_2@2x.png'),
             desc: 'Provide ETH to this pool to start selling ETH call and put options and earning yield on ETH'

@@ -107,7 +107,7 @@
         </div>
         <div v-show="interfaceTab.list[interfaceTab.index].type === 'stakeEarn'">
           <div class="item-title">HOLD STAKING POTS AND EARN WBTC OR ETH</div>
-          <div class="item-desc">You need 200,000 SWF for a staking pot. ou can buy a staking pot by converting
+          <div class="item-desc">You need 200,000 SWF for a staking pot. you can buy a staking pot by converting
                                  200,000 SWF into a staking pot that you will be able to stake for receiving a share
                                  of staking rewards distributed among pots holder.One pot can be used to receive rewards
                                  in WBTC or HETH or HT Current rewards size: 2% of each options size.
@@ -155,7 +155,7 @@
             <div class="box-flex1">
               <div class="title">Acquired on the Bonding Curve</div>
               <div class="number-box display-flex box-center-end">
-                <div>122131</div>
+                <div>0</div>
                 <div class="currency-b">SWF</div>
               </div>
             </div>
@@ -189,7 +189,7 @@
               <div class="input-item">
                 <div class="display-flex box-center-Y input-item-title">
                   <div class="input-item-title-icon"><img src="../../assets/image/icon_trade_1@2x.png" alt=""></div>
-                  <div class="box-flex1">You are buying this amount of SEAWEED</div>
+                  <div class="box-flex1">You are {{boundTab.list[boundTab.index].toLowerCase()}}ing this amount of SEAWEED</div>
                 </div>
                 <div class="display-flex box-center-Y currency-input">
                   <y-number-input :point="6" v-model="putAmount" @input="changePutAmount"></y-number-input>

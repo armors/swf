@@ -17,7 +17,11 @@
         <div class="display-flex box-center-start right-con">
           <div class="text-box">
             <p>If the price of underlying will rise higher than 1,601.25 during the next 1 day your option will expire worthless.</p>
-            <p>If the price of underlying will fall down lower than 1,601.25 during the next 1 day you will be able to exercise your option and take profits.</p>
+            <p>If the price of underlying will fall down lower than {{milliFormat(fees.breakEven)}} during the next 1 day you will be able to exercise your option and take profits.</p>
+            <p>Click the "Buy Option Contract" button and conﬁrm the transaction for ≈{{getHTAmount}} HT in your wallet.</p>
+            <p>The option contract will be activated immediately after the transaction is conﬁrmed by miners.
+               You will be able to exercise your options contracts at any moment during the period of holding.
+            </p>
             <div class="price-desc">Option contract value dynamics depending on the price of an underlying:</div>
             <div class="schedule-label-box display-flex box-center">
               <div class="block"></div>
