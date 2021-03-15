@@ -33,6 +33,7 @@ export default {
     })
   },
   methods: {
+    async getPrice () {},
     async disConnectAccount () {
       console.log(this.$web3_http.currentProvider)
       // await this.$web3_http.currentProvider.disconnect()

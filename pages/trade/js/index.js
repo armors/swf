@@ -106,7 +106,7 @@ export default {
         const fees = await this.getFeesResult(
           tokenContract,
           this.holdTime[this.tradeForm.hold] * 24 * 60 * 60,
-          optionSize,
+          this.$web3_http.utils.toWei(optionSize),
           strikePrice,
           this.optionsType)
         this.fees = {

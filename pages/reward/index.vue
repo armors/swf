@@ -217,14 +217,14 @@
             <div class="box-flex1">
               <div class="token-title">Total Staked</div>
               <div class="number-box display-flex box-center-end">
-                <div>122131</div>
+                <div>{{milliFormat(tokenAnalytics.totalStaked)}}</div>
                 <div class="currency-b">SWF</div>
               </div>
             </div>
             <div class="box-flex1">
               <div class="token-title">Active Pots</div>
               <div class="number-box display-flex box-center-end">
-                <div>10/1500</div>
+                <div>{{tokenAnalytics.activePots}}/1500</div>
               </div>
             </div>
             <div class="box-flex1">

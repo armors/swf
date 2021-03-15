@@ -2,7 +2,7 @@ import * as echarts from 'echarts'
 import { useTokenContract, useTokenContractWeb3 } from '../../../utils/web3/web3Utils'
 import COIN_ABI from '../../../utils/web3/coinABI'
 import { sendTransactionEvent, useContractMethods } from '../../../utils/web3/contractEvent'
-import { keepPoint, numDiv } from '../../../utils/function'
+import { keepPoint, numAdd, numDiv } from '../../../utils/function'
 import { approveEvent } from '../../../utils/web3/contractApprove'
 let that
 export default {
@@ -397,7 +397,11 @@ export default {
           smooth: true
         }]
       },
-      myChart: null
+      myChart: null,
+      tokenAnalytics: {
+        totalStaked: 0,
+        activePots: 0
+      }
     }
   },
   mounted () {
@@ -638,12 +642,29 @@ export default {
           that.getBondChart()
           break
         case 'token':
+          that.getTokenAnalytics()
           break
       }
     },
     changeUtilizationTab (i) {
       this.utilizationTab.index = i
     },
+    // 第五个模块 start
+    async getTokenAnalytics () {
+      const tokenContractHTBC = useTokenContract(process.env.stake_HBTC, COIN_ABI.stake)
+      const tokenContractHETH = useTokenContract(process.env.stake_HETH, COIN_ABI.stake)
+      const tokenContractHT = useTokenContract(process.env.stake_HT, COIN_ABI.stake)
+      const tokenBalanceHBTC = await tokenContractHTBC.balanceOf(that.account)
+      const tokenBalanceHETH = await tokenContractHETH.balanceOf(that.account)
+      const tokenBalanceHT = await tokenContractHT.balanceOf(that.account)
+      console.log(tokenBalanceHBTC, tokenBalanceHETH, tokenBalanceHT)
+      that.tokenAnalytics.activePots = numAdd(numAdd(tokenBalanceHBTC.toString(), tokenBalanceHETH.toString()), tokenBalanceHT.toString())
+      const tokenContractAddress = await tokenContractHT.Seaweed()
+      const tokenContract = useTokenContract(tokenContractAddress, COIN_ABI.stake_seaweed)
+      const tokenBalance = await tokenContract.balanceOf(that.account)
+      that.tokenAnalytics.totalStaked = that.getFromWeiData(tokenBalance)
+    },
+    // 第五个模块 end
     // 第四个模块 bound start
     async getBondInfo () {
       const tokenContract = useTokenContract(process.env.buy_sell_HT, COIN_ABI.buy_sell)
