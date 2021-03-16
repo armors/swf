@@ -30,21 +30,42 @@
               <div class="name">Worthless Expiration</div>
             </div>
             <div class="schedule-box">
-              <div class="schedule-zone top">
+              <div class="schedule-zone top" :class="{'call': optionsType === '2'}">
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
-                <div class="current-price">Current: ${{price_HT || tradeForm.strikePrice}}</div>
-                <div class="strike-price">Strike: ${{tradeForm.strikePrice || price_HT}}</div>
+                <div class="break-even display-flex box-center-Y" v-show="optionsType === '2'">
+                  <div class="text">Break-even: ${{milliFormat(fees.breakEven)}}</div>
+                  <div class="line box-flex1"></div>
+                </div>
+                <div class="current-price display-flex box-center-Y" :class="getPutClass" v-show="optionsType === '1'">
+                  <div class="text">Current: ${{price_HT || tradeForm.strikePrice}}</div>
+                  <div class="line box-flex1"></div>
+                </div>
+                <div class="strike-price  display-flex box-center-Y" v-show="optionsType === '1'">
+                  <div class="line box-flex1"></div>
+                  <div class="text">Strike: ${{tradeForm.strikePrice || price_HT}}</div>
+                </div>
               </div>
               <div class="schedule-line"></div>
               <div class="schedule-line"></div>
               <div class="schedule-line"></div>
-              <div class="schedule-zone bottom">
+              <div class="schedule-zone bottom" :class="{'call': optionsType === '2'}">
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
-                <div class="break-even">Break-even: ${{milliFormat(fees.breakEven)}}</div>
+                <div class="break-even display-flex box-center-Y" v-show="optionsType === '1'">
+                  <div class="text">Break-even: ${{milliFormat(fees.breakEven)}}</div>
+                  <div class="line box-flex1"></div>
+                </div>
+                <div class="current-price display-flex box-center-Y" :class="getPutClass" v-show="optionsType === '2'">
+                  <div class="text">Current: ${{price_HT || tradeForm.strikePrice}}</div>
+                  <div class="line box-flex1"></div>
+                </div>
+                <div class="strike-price  display-flex box-center-Y" v-show="optionsType === '2'">
+                  <div class="line box-flex1"></div>
+                  <div class="text">Strike: ${{tradeForm.strikePrice || price_HT}}</div>
+                </div>
               </div>
             </div>
           </div>

@@ -67,12 +67,34 @@
             margin-top: 25px;
             .schedule-zone{
               position: relative;
-              border-bottom: 3px solid #ffd24c;
+              //border-bottom: 3px solid #ffd24c;
               &:before{
                 content: '';
                 height: 100%;
                 width: 100%;
                 position: absolute;
+              }
+              &.call.top:before{
+                background: -webkit-linear-gradient(
+                    270deg
+                  , rgba(173, 208, 20, 0.2) 0%, rgba(173, 208, 20, 0.6) 100%);
+                background: -moz-linear-gradient(270deg, rgba(173, 208, 20, 0.2) 0%, rgba(173, 208, 20, 0.6) 100%);
+                background: -o-linear-gradient(270deg, rgba(173, 208, 20, 0.2) 0%, rgba(173, 208, 20, 0.6) 100%);
+                background: -ms-linear-gradient(270deg, rgba(173, 208, 20, 0.2) 0%, rgba(173, 208, 20, 0.6) 100%);
+                background: linear-gradient(
+                    180deg
+                  , rgba(173, 208, 20, 0.2) 0%, rgba(173, 208, 20, 0.6) 100%);
+              }
+              &.call.bottom:before{
+                background: -webkit-linear-gradient(
+                    270deg
+                  , rgba(197, 19, 19, 0.5) 0%, rgba(197, 19, 19, 0.1) 100%);
+                background: -moz-linear-gradient(270deg, rgba(197, 19, 19, 0.5) 0%, rgba(197, 19, 19, 0.1) 100%);
+                background: -o-linear-gradient(270deg, rgba(197, 19, 19, 0.5) 0%, rgba(197, 19, 19, 0.1) 100%);
+                background: -ms-linear-gradient(270deg, rgba(197, 19, 19, 0.5) 0%, rgba(197, 19, 19, 0.1) 100%);
+                background: linear-gradient(
+                    180deg
+                  , rgba(197, 19, 19, 0.5) 0%, rgba(197, 19, 19, 0.1) 100%);
               }
               &.top:before{
                 background: -webkit-linear-gradient(
@@ -96,48 +118,105 @@
                     180deg
                   , rgba(173, 208, 20, 0.6) 0%, rgba(173, 208, 20, 0.2) 100%);
               }
-              .current-price{
-                position: absolute;
-                left: 0;
-                bottom: -11px;
-                min-width: 150px;
-                padding: 0 10px;
-                height: 22px;
-                background-color: rgb(197, 19, 19);
-                font-size: 12px;
-                color: $colorFFF;
-                line-height: 22px;
-                text-align: center;
-              }
-              .strike-price{
-                position: absolute;
-                right: 0;
-                bottom: -11px;
-                min-width: 150px;
-                padding: 0 10px;
-                height: 22px;
-                background-color: #ffd24c;
-                font-size: 12px;
-                color: $block;
-                line-height: 22px;
-                text-align: center;
-              }
               &.bottom{
-                border-top: 3px solid rgba(173, 208, 20, 0.8);
+                //border-top: 3px solid rgba(173, 208, 20, 0.8);
                 border-bottom: none;
               }
               .break-even{
                 position: absolute;
                 left: 0;
                 top: -11px;
-                min-width: 150px;
-                padding: 0 10px;
-                height: 22px;
-                background-color: rgb(173, 208, 20);
-                font-size: 12px;
-                color: $block;
-                line-height: 22px;
-                text-align: center;
+                width: 100%;
+                .text{
+                  min-width: 150px;
+                  height: 22px;
+                  background-color: rgb(173, 208, 20);
+                  font-size: 12px;
+                  color: $block;
+                  line-height: 22px;
+                  text-align: center;
+                }
+                .line{
+                  height: 2px;
+                  background-color: rgba(173, 208, 20, 0.8);
+                }
+              }
+              .current-price{
+                position: absolute;
+                left: 0;
+                bottom: -11px;
+                width: 100%;
+                transition: ease-in-out 1.5s;
+                .text{
+                  min-width: 150px;
+                  height: 22px;
+                  background-color: rgb(197, 19, 19);
+                  font-size: 12px;
+                  color: $colorFFF;
+                  line-height: 22px;
+                  text-align: center;
+                  z-index: 10;
+                }
+                .line{
+                  z-index: 5;
+                  height: 2px;
+                  background-color: rgb(197, 19, 19);
+                }
+                &.bottom{
+                  bottom: -45px;
+                }
+                &.top{
+                  bottom: 60px;
+                }
+              }
+              .strike-price{
+                position: absolute;
+                right: 0;
+                bottom: -11px;
+                width: 100%;
+                .text{
+                  z-index: 10;
+                  min-width: 150px;
+                  height: 22px;
+                  background-color: #ffd24c;
+                  font-size: 12px;
+                  color: $block;
+                  line-height: 22px;
+                  text-align: center;
+                }
+                .line{
+                  height: 2px;
+                  background-color: #ffd24c;
+                }
+              }
+              &.call{
+                .break-even{
+                  width: 100%;
+                  position: absolute;
+                  left: 0;
+                  top: auto;
+                  bottom: -11px;
+                }
+                .current-price{
+                  position: absolute;
+                  left: 0;
+                  top: -11px;
+                  width: 100%;
+                  transition: ease-in-out 1.5s;
+                  bottom: auto;
+                  &.bottom{
+                    top: -48px;
+                  }
+                  &.top{
+                    top: 60px;
+                  }
+                }
+                .strike-price{
+                  bottom: auto;
+                  position: absolute;
+                  right: 0;
+                  top: -11px;
+                }
               }
             }
             .schedule-line{

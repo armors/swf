@@ -52,16 +52,21 @@ export default {
       contractHead: ['Type', 'Size', 'Strike Price', 'Price Now', 'Break-even', 'P&L', 'Placed At', 'Expires in', 'Exercise', 'Share'],
       contractDataList: [],
       price_HT: 0,
-      getHTAmount: 0
+      getHTAmount: 0,
+      getPutClass: ''
     }
   },
-  computed: {
-    // getHTAmount: async function () {
-    //   const price = await this.getPrice()
-    //   console.log(price)
-    //   return milliFormat(parseFloat(keepPoint(numDiv(this.fees.totalCost, price[this.tradeTab.list[this.tradeTab.index].currency]), 4)))
-    // }
-  },
+  // computed: {
+  //   getPutClass: function () {
+  //     if (parseFloat(this.price_HT) > parseFloat(this.fees.strikePrice) && parseFloat(this.fees.strikePrice) > parseFloat(this.fees.breakEven)) {
+  //       return 'top'
+  //     } else if (parseFloat(this.fees.strikePrice) > parseFloat(this.price_HT) || parseFloat(this.fees.breakEven) > parseFloat(this.price_HT)) {
+  //       return 'bottom'
+  //     } else {
+  //       return ''
+  //     }
+  //   }
+  // },
   watch: {
     // 切换存入期限以更新fee
     'tradeForm.hold': function (val) {
@@ -137,6 +142,14 @@ export default {
         }
         // this.getHTAmount = parseFloat(keepPoint(numDiv(this.fees.totalCost, price[this.tradeTab.list[this.tradeTab.index].currency]), 4))
         console.log(this.fees)
+
+        if (parseFloat(this.price_HT) > parseFloat(this.fees.strikePrice) && parseFloat(this.fees.strikePrice) > parseFloat(this.fees.breakEven)) {
+          this.getPutClass = 'top'
+        } else if (parseFloat(this.fees.strikePrice) > parseFloat(this.price_HT) || parseFloat(this.fees.breakEven) > parseFloat(this.price_HT)) {
+          this.getPutClass = 'bottom'
+        } else {
+          this.getPutClass = ''
+        }
       } catch (e) {
         console.log(e)
       }
