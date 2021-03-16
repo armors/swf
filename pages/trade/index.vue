@@ -34,7 +34,7 @@
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
                 <div class="schedule-line"></div>
-                <div class="current-price">Current: ${{tradeForm.strikePrice || price_HT}}</div>
+                <div class="current-price">Current: ${{price_HT || tradeForm.strikePrice}}</div>
                 <div class="strike-price">Strike: ${{tradeForm.strikePrice || price_HT}}</div>
               </div>
               <div class="schedule-line"></div>
