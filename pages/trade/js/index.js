@@ -130,7 +130,8 @@ export default {
         this.fees.totalCost = parseFloat(this.keepPoint(currentPrice * this.fees.totalFee, 4))
         // PUT 类型
         if (this.optionsType === '1') {
-          this.fees.breakEven = parseFloat(this.keepPoint(strikePrice + (this.fees.totalCost / optionSize), 4))
+          // this.fees.breakEven = parseFloat(this.keepPoint(strikePrice + (this.fees.totalCost / optionSize), 4))
+          this.fees.breakEven = parseFloat(this.keepPoint(parseFloat(strikePrice) + (this.fees.totalCost / optionSize), 4))
         } else {
           this.fees.breakEven = parseFloat(this.keepPoint(strikePrice - (this.fees.totalCost / optionSize), 4))
         }
@@ -184,7 +185,8 @@ export default {
         tokenContract.methods.create(
           this.holdTime[this.tradeForm.hold] * 24 * 60 * 60,
           that.$web3_http.utils.toWei(that.tradeForm.optionSize),
-          this.$web3_http.utils.toWei(this.tradeForm.strikePrice, 'ether'),
+          // this.$web3_http.utils.toWei(this.tradeForm.strikePrice, 'ether'),
+          this.toWei8(this.tradeForm.strikePrice),
           this.optionsType)
           .send({
             from: that.account,
