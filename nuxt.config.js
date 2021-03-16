@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
-// import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+// const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const git_revision_plugin = new GitRevisionPlugin()
 const webpack = require('webpack')
@@ -104,6 +105,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    // analyze: true,
     transpile: ['vuetify/lib'],
     plugins: [
       new webpack.DefinePlugin({
@@ -134,6 +136,13 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    // 使用splitChunks将chunks明确切分开来。
+    optimization: {
+      splitChunks: {
+        minSize: 10000,
+        maxSize: 250000
+      }
+    },
     extend (config, { isDev, isClient }) {
       if (isClient && !isDev) {
         // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
@@ -143,6 +152,15 @@ export default {
           drop_console: false, // console
           pure_funcs: ['console.log'] // 移除console.log
         }
+        config.plugins.unshift(new LodashModuleReplacementPlugin())
+        config.module.rules[2].use[0].options.plugins = ['lodash']
+        // config.plugins.push(new VuetifyLoaderPlugin())
+        // config.optimization.splitChunks.cacheGroups.commons = {
+        //   test: /node_modules[\\/](vue|vue-loader|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/,
+        //   chunks: 'all',
+        //   priority: 10,
+        //   name: true
+        // }
       }
     }
   }
