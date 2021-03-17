@@ -190,7 +190,7 @@
               <div class="input-item">
                 <div class="display-flex box-center-Y input-item-title">
                   <div class="input-item-title-icon"><img src="../../assets/image/icon_trade_1@2x.png" alt=""></div>
-                  <div class="box-flex1">You are {{boundTab.list[boundTab.index].toLowerCase()}}ing this amount of SEAWEED</div>
+                  <div class="box-flex1">You are {{boundTab.list[boundTab.index].toLowerCase()}}ing this amount of SWF</div>
                 </div>
                 <div class="display-flex box-center-Y currency-input">
                   <y-number-input :point="6" v-model="putAmount" :max="parseInt(SWFTotalSupply)" @input="changePutAmount"></y-number-input>
@@ -237,7 +237,7 @@
           </div>
 <!--          <div class="display-flex box-center-Y token-2">-->
 <!--            <div class="box-flex1">-->
-<!--              <div class="token-title">Settlements Fees in HT</div>-->
+<!--              <div class="token-title">SettlemYour Buy Priceents Fees in HT</div>-->
 <!--              <div class="number-box display-flex box-center-end">-->
 <!--                <div>131</div>-->
 <!--                <div class="currency-b">HT</div>-->

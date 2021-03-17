@@ -56,7 +56,7 @@
                   <div class="text display-flex box-center-Y">
                     <div></div>
                     <div class="box-flex1"></div>
-                    <div>{{liquidity.list[liquidity.index].currency}} Pool Si</div>
+                    <div>{{liquidity.list[liquidity.index].currency}} Pool Size</div>
                   </div>
                   <div class="rate-text display-flex box-center-Y">
                     <div>{{balanceRate}}%</div>

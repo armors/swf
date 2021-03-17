@@ -125,7 +125,10 @@ export default {
         that.totalBalance = parseFloat(that.$web3_http.utils.fromWei(totalBalance.toString()))
         that.totalSupply = parseFloat(that.$web3_http.utils.fromWei(totalSupply.toString()))
         const shareOf = await that.poolContract.shareOf(that.account)
-        that.balanceRate = parseFloat(keepPoint(that.$web3_http.utils.fromWei(shareOf.toString()), 2))
+        // 新增
+        const rate = parseFloat(keepPoint(that.$web3_http.utils.fromWei(shareOf.toString()), 2))
+        // that.balanceRate = parseFloat(keepPoint(that.$web3_http.utils.fromWei(shareOf.toString()), 2))
+        that.balanceRate = parseFloat(keepPoint(numDiv(rate * 100, that.totalBalance), 2))
         that.selfPoolBalance = parseFloat(keepPoint(numMulti(that.balanceRate / 100, that.totalBalance), 4))
         console.log(that.selfPoolBalance, that.totalBalance)
         const balanceWrite = await that.poolContract.balanceOf(that.account)
