@@ -412,7 +412,10 @@ export default {
       that = this
       that.account = that.$account
       // 页面进来请求第一页的数据
-      that.getEndInfo()
+      // that.getEndInfo()
+      that.getBondInfo()
+      that.getSWFPrice()
+      that.getBondChart()
     },
     initChart () {
       if (that.myChart) {

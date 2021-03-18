@@ -7,9 +7,6 @@
           <div>SEAWEED</div>
         </div>
         <div class="display-flex box-center-Y tab-box">
-          <div class="tab-list box-flex1 display-flex box-center-Y">
-            <nuxt-link :to="`/${v.path}`" tag="div" class="box-flex1 tab-item no-select" v-for="(v, i) in tabs" :key="`tab${i}`" @click="selectTab(i)">{{v.name}}</nuxt-link>
-          </div>
           <div class="btn-disconnect no-select" @click="disConnectAccount">DisConnect</div>
         </div>
       </div>
