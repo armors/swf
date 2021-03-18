@@ -1,3 +1,19 @@
+
+/**
+ * 获取Url的参数
+ * @param name
+ * @returns {string}
+ */
+export function getParam (name) {
+  const LocString = String(window.document.location.href)
+  const rs = new RegExp('(^|)' + name + '=([^&]*)(&|$)', 'gi')
+    .exec(LocString); let tmp
+  if (tmp === rs) {
+    return tmp[2]
+  }
+  return ''
+}
+
 /* eslint-disable */
 export function nowTime () {
   return Math.floor(new Date().getTime() / 1000)

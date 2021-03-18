@@ -58,33 +58,33 @@
     padding-bottom: 108px;
     .sub-title-box{
       .text1{
-        font-size: 33px;
+        font-size: 54px;
         font-family: Impact;
         font-weight: 400;
-        line-height: 42px;
+        line-height: 64px;
         color: $block;
       }
       .text2{
-        font-size: 39px;
+        font-size: 50px;
         font-family: Impact;
         font-weight: 400;
-        line-height: 47px;
+        line-height: 60px;
         color: $emColor;
 
       }
       .text3{
-        font-size: 22px;
+        font-size: 42px;
         font-family: Impact;
         font-weight: 400;
-        line-height: 27px;
+        line-height: 47px;
         color: $block;
 
       }
       .text4{
-        font-size: 28px;
+        font-size: 40px;
         font-family: Impact;
         font-weight: 400;
-        line-height: 34px;
+        line-height: 50px;
         color: $block;
         span{
           color: $emColor;
@@ -426,6 +426,10 @@
         line-height: 48px;
         color: $colorFFF;
         text-align: center;
+        &.no-active{
+          background-color: $bdColorf2;
+          color: $color999;
+        }
       }
     }
     .token-box{

@@ -113,7 +113,9 @@ export default {
       initContractStake: null,
       potTotalSupply: 0,
       SWFTotalSupply: 0,
+      SWFBalance: 0,
       SWFPrice: 0,
+      getAvailable: 0,
       stakeEarnList: [
         {
           icon_url: require('../../../assets/image/icon_reward_stake_1@2x.png'),
@@ -323,7 +325,7 @@ export default {
           claim: 123
         }
       ],
-      putAmount: '',
+      putAmount: '1',
       getAmount: '',
       getAmountOriginal: '',
       boundTab: {
@@ -416,6 +418,7 @@ export default {
       that.getBondInfo()
       that.getSWFPrice()
       that.getBondChart()
+      that.changePutAmount(1)
     },
     initChart () {
       if (that.myChart) {
@@ -672,8 +675,14 @@ export default {
     async getBondInfo () {
       const tokenContract = useTokenContract(process.env.buy_sell_HT, COIN_ABI.buy_sell)
       const token = await tokenContract.token()
+      console.log(token)
       const tokenContract2 = useTokenContract(token, COIN_ABI.r_seaweed)
-      const totalSupply = await tokenContract2.totalSupply()
+      const SWFBalance = await tokenContract2.balanceOf(that.account)
+      that.SWFBalance = parseFloat(keepPoint(that.$web3_http.utils.fromWei(SWFBalance.toString()), 2))
+      const totalSupply = await tokenContract2.balanceOf(process.env.buy_sell_HT)
+      console.log(totalSupply)
+      const getAvailable = await tokenContract.getAvailable()
+      that.getAvailable = parseFloat(keepPoint(that.$web3_http.utils.fromWei(getAvailable.toString()), 2))
       that.SWFTotalSupply = that.$web3_http.utils.fromWei(totalSupply.toString())
     },
     changeBoundTab (i) {
@@ -682,7 +691,9 @@ export default {
       that.getAmountOriginal = ''
       that.getAmount = ''
       that.getSWFPrice()
-      that.getBondChart()
+      if (this.boundTab.index === 0) {
+        that.getBondChart()
+      }
     },
     async changePutAmount (val) {
       if (!parseInt(val)) {
@@ -830,9 +841,13 @@ export default {
     buy () {
       // 需要传Value的合约操作初始化合约
       const tokenContract = useTokenContractWeb3(COIN_ABI.buy_sell, process.env.buy_sell_HT)
+      console.log(this.$route.query.e)
+      const e = this.$route.query.e || 'none'
+      console.log(e)
       sendTransactionEvent(
         tokenContract.methods.buy(
-          that.$web3_http.utils.toWei(parseFloat(that.putAmount).toString())
+          that.$web3_http.utils.toWei(parseFloat(that.putAmount).toString()),
+          e
         )
           .send({
             from: that.account,
@@ -847,6 +862,12 @@ export default {
         })
     },
     async sell () {
+      if (!(this.SWFBalance > 0)) {
+        return
+      }
+      if (parseFloat(that.getAmount) >= (that.getAvailable * 0.9)) {
+        return alert(`本次最多可获得${that.getAvailable * 0.9}HT, 已超出最大限度`)
+      }
       const tokenContract = useTokenContract(process.env.buy_sell_HT, COIN_ABI.buy_sell)
       const token = await tokenContract.token()
       const tokenContract2 = useTokenContract(token, COIN_ABI.r_seaweed)

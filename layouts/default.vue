@@ -35,16 +35,15 @@
                 <div>Options can be defined as contracts that give a buyer the right to buy or sell the underlying asset, or the security on which a derivative contract is based, by a set expiration date at a specific price.
                   *This specific price is often referred to as the "strike price." It's the amount at which a derivative contract can be bought or sold.
                   Read more:
-                  https://docs.seaweed.finance/seaweed/option/what-are-options
                 </div>
+                <a target="_blank" style="word-wrap:break-word; word-break:break-all; " class="emColor" href="https://docs.seaweed.finance/seaweed/option/what-are-options">https://docs.seaweed.finance/seaweed/option/what-are-options</a>
               </div>
               <div class="box-flex1 document-item">
                 <div class="document-title">Seaweed Protocol Whitepaper</div>
                 <div>The derivative market is trading at 100x volume in comparison to the spot market in the traditional financial system. As assets moving toward digitalization and continuous mutuality of Defi infrastructure, the new paradigm of a future global financial system emerges in the age of rapidly growing inflation. Start with HECO native assets like HBTC, HETH, and HT, Seaweed is bringing new financial instruments to the Defi ecosystem.
-
                   Read more:
-                  https://docs.seaweed.finance/seaweed/</div>
-              </div>
+                </div>
+                <a target="_blank" style="word-wrap:break-word; word-break:break-all; " class="emColor" href="https://docs.seaweed.finance/seaweed/">https://docs.seaweed.finance/seaweed/</a></div>
             </div>
           </div>
         </div>
@@ -62,7 +61,7 @@
             <div class="join-item display-flex box-center-start" v-for="(v, i) in joinList" :key="`join-item${i}`">
               <div class="img"><img :src="v.icon" alt=""></div>
               <div class="box-flex1">
-                <div class="title">{{v.title}}</div>
+                <a class="title" :href="v.url" target="_blank">{{v.title}}</a>
                 <div>{{v.text}}</div>
               </div>
             </div>
@@ -196,7 +195,8 @@ export { default } from './js/default'
       padding-bottom: 227px;
       .desc {
         color: $colorFFF;
-        font-size: 82px;
+        font-size: 58px;
+        text-align: center;
         font-family: Impact;
         font-weight: 400;
         line-height: 98px;
@@ -266,7 +266,7 @@ export { default } from './js/default'
         .document-item{
           padding: 55px 24px;
           width: 454px;
-          height: 415px;
+          height: 518px;
           border-radius: 8px;
           background-color: $bgColor;
           font-size: 18px;
@@ -319,6 +319,7 @@ export { default } from './js/default'
       flex-wrap: wrap;
       .join-item{
         width: 270px;
+        min-height: 278px;
         margin-right: 56px;
         &:nth-child(3n) {
           margin-right: 0;

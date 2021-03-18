@@ -31,8 +31,8 @@
           <div class="box-flex1 line2"></div>
         </div>
         <div class="text1">HELP US </div>
-        <div class="text3">with the</div>
-        <div class="text2">SWF price</div>
+        <div class="text2">with the</div>
+        <div class="text3">SWF price</div>
         <div class="text4">Discovery</div>
       </div>
       <div class="con-box box-flex1">
@@ -53,7 +53,7 @@
             <div class="box-flex1">
               <div class="title">SWF Owned</div>
               <div class="number-box display-flex box-center-end">
-                <div>0</div>
+                <div>{{milliFormat(SWFBalance)}}</div>
                 <div class="currency-b">SWF</div>
               </div>
             </div>
@@ -106,7 +106,7 @@
                 </div>
               </div>
               <div class="btn-liquidity-deposit no-select" v-show="boundTab.index === 0" @click="buy">BUY</div>
-              <div class="btn-liquidity-deposit no-select" v-show="boundTab.index === 1" @click="sell">SELL</div>
+              <div class="btn-liquidity-deposit no-select" :class="{'no-active': !(SWFBalance > 0)}" v-show="boundTab.index === 1" @click="sell">SELL</div>
             </div>
           </div>
         </div>
