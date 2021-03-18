@@ -25,33 +25,33 @@ export default {
       joinList: [
         {
           icon: require('../../assets/image/icon_join_1@2x.png'),
-          title: 'TWItter',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
+          title: 'Twitter',
+          text: 'Here we mainly publish the latest progress of the Seaweed Finance, Seaweed Finance community activities, and our understanding and analysis of current affairs in the options area.'
         },
         {
           icon: require('../../assets/image/icon_join_2@2x.png'),
           title: 'Telegram',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
+          text: 'If you want to know more about our project, it is necessary to join our Telegram community, here we will be 24/7 for everyone to announce progress of the Seaweed Finance, technical breakthroughs, airdrop incentive for all members unscheduled, you are welcome to join us！'
         },
-        {
-          icon: require('../../assets/image/icon_join_3@2x.png'),
-          title: 'Discord',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
-        },
-        {
-          icon: require('../../assets/image/icon_join_4@2x.png'),
-          title: 'GitHub',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
-        },
+        // {
+        //   icon: require('../../assets/image/icon_join_3@2x.png'),
+        //   title: 'Discord',
+        //   text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
+        // },
+        // {
+        //   icon: require('../../assets/image/icon_join_4@2x.png'),
+        //   title: 'GitHub',
+        //   text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
+        // },
         {
           icon: require('../../assets/image/icon_join_5@2x.png'),
           title: 'Medium',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
-        },
-        {
-          icon: require('../../assets/image/icon_join_6@2x.png'),
-          title: 'DeFi Pulse',
-          text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
+          text: 'The Seaweed Finance Publication publishes the latest developments in Seaweed Finance, options trading knowledge, news, and sector development research.'
+        // },
+        // {
+        //   icon: require('../../assets/image/icon_join_6@2x.png'),
+        //   title: 'DeFi Pulse',
+        //   text: 'My Spring Festival To tell you the truth, I don like the Spring Festival at all.'
         }
       ]
     }

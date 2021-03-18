@@ -12,7 +12,7 @@
       </div>
       <div class="box-flex1 content no-scroller" style="overflow-y: scroll;">
         <div class="head-box">
-          <div class="center-width desc">THE SimpLESTem OPTIONS TRADING</div>
+          <div class="center-width desc">The simplest options trading platform with unlimited liquidity potential</div>
           <div class="center-width sub-desc">Trade non-custodial options for profits or to hedge your positions Enjoy fixed price and Nnlimited upside of the options contracts.No registration, KYC or email required.</div>
           <div class="line-withe"></div>
           <div class="connect-wallet no-select" @click="connectAccount" v-show="!account">CONNECT  WALLET</div>
@@ -31,13 +31,19 @@
             </div>
             <div class="box-flex1 con-box display-flex box-center-Y document-list">
               <div class="box-flex1 document-item">
-                <div class="document-title">Seaweed protocol Whitpaper</div>
-                <div>My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young I liked it very muchLost and Found My name is Jack.I picked up a couple of yellow keys in the library.If you are the owner,please call me at i have a friend who is falling in love. she honestly claims the sky is blue My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young ...
+                <div class="document-title">Learn more about options</div>
+                <div>Options can be defined as contracts that give a buyer the right to buy or sell the underlying asset, or the security on which a derivative contract is based, by a set expiration date at a specific price.
+                  *This specific price is often referred to as the "strike price." It's the amount at which a derivative contract can be bought or sold.
+                  Read more:
+                  https://docs.seaweed.finance/seaweed/option/what-are-options
                 </div>
               </div>
               <div class="box-flex1 document-item">
-                <div class="document-title">GitBook：learn Options Basics</div>
-                <div>My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young I liked it very muchLost and Found My name is Jack.I picked up a couple of yellow keys in the library.If you are the owner,please call me at i have a friend who is falling in love. she honestly claims the sky is blue My Spring Festival To tell you the truth, I don't like the Spring Festival at all. When I was young ...</div>
+                <div class="document-title">Seaweed Protocol Whitepaper</div>
+                <div>The derivative market is trading at 100x volume in comparison to the spot market in the traditional financial system. As assets moving toward digitalization and continuous mutuality of Defi infrastructure, the new paradigm of a future global financial system emerges in the age of rapidly growing inflation. Start with HECO native assets like HBTC, HETH, and HT, Seaweed is bringing new financial instruments to the Defi ecosystem.
+
+                  Read more:
+                  https://docs.seaweed.finance/seaweed/</div>
               </div>
             </div>
           </div>
@@ -62,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="connect-us"><span class="emColor">Need Help</span>? Email at xx@xx.com</div>
+        <div class="connect-us"><span class="emColor">Need Help</span>? Email at info@seaweed.finance</div>
       </div>
     </div>
   </div>

@@ -30,35 +30,35 @@
           <div class="line1"></div>
           <div class="box-flex1 line2"></div>
         </div>
-        <div class="text1">CHOOSE THE</div>
-        <div class="text2">INTERFACE</div>
-        <div class="text3">THAT YOU WANT TO</div>
-        <div class="text4">NTERACT <span>WITH</span></div>
+        <div class="text1">HELP US </div>
+        <div class="text3">with the</div>
+        <div class="text2">SWF price</div>
+        <div class="text4">Discovery</div>
       </div>
       <div class="con-box box-flex1">
         <div>
-          <div class="item-title">BONDING CURVE CONTRACT:BUY OR SELL SWF TOKENS</div>
+          <div class="item-title">Elastic Price Offering: Providing SWF token liquidity</div>
           <div class="end-tab display-flex box-center-Y">
             <div class="end-item no-select" @click="changeBoundTab(i)" :class="{active: boundTab.index === i}"
                  v-for="(v, i) in boundTab.list" :key="`endTab-list-${i}`" v-html="v"></div>
           </div>
           <div class="bound-info display-flex box-center-Y">
             <div class="box-flex1">
-              <div class="title">Your Buy Price</div>
+              <div class="title">Currenty Price Per SWF</div>
               <div class="number-box display-flex box-center-end">
                 <div>{{SWFPrice}}</div>
                 <div class="currency-b">HT</div>
               </div>
             </div>
             <div class="box-flex1">
-              <div class="title">Acquired on the Bonding Curve</div>
+              <div class="title">SWF Owned</div>
               <div class="number-box display-flex box-center-end">
                 <div>0</div>
                 <div class="currency-b">SWF</div>
               </div>
             </div>
             <div class="box-flex1">
-              <div class="title">Available on the Bonding Curve</div>
+              <div class="title">Remaining SWF</div>
               <div class="number-box display-flex box-center-end">
                 <div>{{milliFormat(SWFTotalSupply)}}</div>
                 <div class="currency-b">SWF</div>
