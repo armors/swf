@@ -423,11 +423,12 @@ export default {
     initChart () {
       if (that.myChart) {
         that.myChart.clear()
-        this.$nextTick(function () {
-          setTimeout(function () {
-            that.option && that.myChart.setOption(that.option)
-          }, 500)
-        })
+        // this.$nextTick(function () {
+        //   setTimeout(function () {
+        //     that.option && that.myChart.setOption(that.option)
+        //   }, 500)
+        // })
+        that.option && that.myChart.setOption(that.option)
       } else {
         this.$nextTick(function () {
           setTimeout(function () {
