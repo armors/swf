@@ -186,7 +186,8 @@ export { default } from './js/default'
   }
   .head-box {
       width: 100%;
-      background-image: url(../assets/image/img_header.png);
+      /*background-image: url(../assets/image/img_header.png);*/
+      background-image: url(https://seaweed.finance/images/bg_header.jpg);
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: center;
