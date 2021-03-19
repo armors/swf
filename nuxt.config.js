@@ -5,7 +5,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin')
 const git_revision_plugin = new GitRevisionPlugin()
 const webpack = require('webpack')
 const env = require('dotenv').config({ path: '.env.' + process.env.BASE })
-const base = '/dapp/web3/'
+const base = '/'
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   server: {
