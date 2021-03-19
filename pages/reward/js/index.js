@@ -858,6 +858,8 @@ export default {
           that.putAmount = ''
           that.getAmountOriginal = ''
           that.getAmount = ''
+          that.getBondInfo()
+          that.getSWFPrice()
           console.log('buy success。。。')
         })
     },
@@ -895,6 +897,8 @@ export default {
           that.$web3_http.utils.toWei(parseFloat(that.putAmount).toString())
         ]
       }, function () {
+        that.getBondInfo()
+        that.getSWFPrice()
         console.log('sell success...')
       })
     }
