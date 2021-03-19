@@ -26,11 +26,13 @@ export default {
         {
           icon: require('../../assets/image/icon_join_1@2x.png'),
           title: 'Twitter',
+          url: 'https://twitter.com/FinanceSeaweed',
           text: 'Here we mainly publish the latest progress of the Seaweed Finance, Seaweed Finance community activities, and our understanding and analysis of current affairs in the options area.'
         },
         {
           icon: require('../../assets/image/icon_join_2@2x.png'),
           title: 'Telegram',
+          url: 'https://t.me/Seaweedfinance',
           text: 'If you want to know more about our project, it is necessary to join our Telegram community, here we will be 24/7 for everyone to announce progress of the Seaweed Finance, technical breakthroughs, airdrop incentive for all members unscheduled, you are welcome to join us！'
         },
         // {
@@ -46,6 +48,7 @@ export default {
         {
           icon: require('../../assets/image/icon_join_5@2x.png'),
           title: 'Medium',
+          url: 'https://medium.com/seaweed-finance',
           text: 'The Seaweed Finance Publication publishes the latest developments in Seaweed Finance, options trading knowledge, news, and sector development research.'
         // },
         // {

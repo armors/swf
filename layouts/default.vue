@@ -34,14 +34,14 @@
                 <div class="document-title">Learn more about options</div>
                 <div>Options can be defined as contracts that give a buyer the right to buy or sell the underlying asset, or the security on which a derivative contract is based, by a set expiration date at a specific price.
                   *This specific price is often referred to as the "strike price." It's the amount at which a derivative contract can be bought or sold.
-                  Read more:
+                  <p>Read more:</p>
                 </div>
                 <a target="_blank" style="word-wrap:break-word; word-break:break-all; " class="emColor" href="https://docs.seaweed.finance/seaweed/option/what-are-options">https://docs.seaweed.finance/seaweed/option/what-are-options</a>
               </div>
               <div class="box-flex1 document-item">
                 <div class="document-title">Seaweed Protocol Whitepaper</div>
                 <div>The derivative market is trading at 100x volume in comparison to the spot market in the traditional financial system. As assets moving toward digitalization and continuous mutuality of Defi infrastructure, the new paradigm of a future global financial system emerges in the age of rapidly growing inflation. Start with HECO native assets like HBTC, HETH, and HT, Seaweed is bringing new financial instruments to the Defi ecosystem.
-                  Read more:
+                  <p>Read more:</p>
                 </div>
                 <a target="_blank" style="word-wrap:break-word; word-break:break-all; " class="emColor" href="https://docs.seaweed.finance/seaweed/">https://docs.seaweed.finance/seaweed/</a></div>
             </div>
