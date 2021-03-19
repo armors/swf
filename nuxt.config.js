@@ -18,14 +18,14 @@ export default {
   head: {
     // titleTemplate: '%s - Yswap',
     titleTemplate: '%s',
-    title: 'Seaweed',
+    title: 'Seaweed Options Exchange, Elastic Price Offering.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: base + 'yswap@2x.png' },
+      { rel: 'icon', type: 'image/png', href: base + 'logo@2x.png' },
       { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
     ]
     // script: [
